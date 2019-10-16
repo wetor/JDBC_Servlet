@@ -1,6 +1,6 @@
-package dao.post;
+package com.wetor.dao;
 
-import entity.Post;
+import com.wetor.entity.Post;
 
 import java.util.List;
 

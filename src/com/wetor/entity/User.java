@@ -1,4 +1,4 @@
-package entity;
+package com.wetor.entity;
 
 public class User {
     private Integer id;

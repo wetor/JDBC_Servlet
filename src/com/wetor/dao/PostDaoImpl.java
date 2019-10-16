@@ -1,10 +1,10 @@
-package dao.post;
+package com.wetor.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import entity.Post;
+import com.wetor.entity.Post;
 import util.JdbcUtil;
 /**
  * @author wetor

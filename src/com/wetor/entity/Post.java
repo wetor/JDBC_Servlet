@@ -1,4 +1,4 @@
-package entity;
+package com.wetor.entity;
 
 import java.util.Date;
 
