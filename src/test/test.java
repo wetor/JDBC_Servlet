@@ -1,13 +1,12 @@
 package test;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import entity.Post;
-import dao.post.PostDao;
-import dao.post.PostDaoImpl;
+import com.wetor.entity.Post;
+import com.wetor.dao.PostDao;
+import com.wetor.dao.PostDaoImpl;
 
 import util.JdbcBase;
 import util.JdbcUtil;
@@ -98,6 +97,5 @@ public class test {
         for(int i=0;i<p.size();i++){
             System.out.println(post.get(p.get(i)).toString());
         }
-
     }
 }
