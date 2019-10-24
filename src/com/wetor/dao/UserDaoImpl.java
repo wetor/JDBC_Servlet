@@ -25,8 +25,9 @@ public class UserDaoImpl extends util.JdbcBase implements UserDao {
         ResultSet rs = null;
 
         conn = JdbcUtil.getConnection();
-        ps = conn.prepareStatement("select * from t_user where u_name=?");
+        ps = conn.prepareStatement("select * from t_user where u_name=? and u_password=?");
         ps.setString(1, user.getName());
+        ps.setString(2, user.getPassword());
         rs = ps.executeQuery();
         if (rs.next()) {
             JdbcUtil.close(rs,ps,conn);

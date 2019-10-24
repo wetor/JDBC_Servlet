@@ -70,7 +70,7 @@ public class PostDaoImpl extends util.JdbcBase implements PostDao{
             p.setTitle(rs.getString("p_title"));
             p.setAuthor(rs.getString("p_author"));
             p.setDate(new Date(rs.getTimestamp("p_date").getTime()));
-            p.setContent(this.clobToString(rs.getClob("p_content")));
+            p.setContent(this.clobToString(rs.getClob("p_content"),256));
             list.add(p);
         }
 
@@ -101,7 +101,7 @@ public class PostDaoImpl extends util.JdbcBase implements PostDao{
             p.setTitle(rs.getString("p_title"));
             p.setAuthor(rs.getString("p_author"));
             p.setDate(new Date(rs.getTimestamp("p_date").getTime()));
-            p.setContent(this.clobToString(rs.getClob("p_content")));
+            p.setContent(this.clobToString(rs.getClob("p_content"),null));
         }
 
 

@@ -1,4 +1,4 @@
-package com.wetor.servlet.user;
+package com.wetor.servlet;
 
 import com.wetor.entity.User;
 import com.wetor.service.UserService;
@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-public class Register extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     @Override
-    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("GBK");
-        response.setCharacterEncoding("GBK");
+    public void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         PrintWriter pw= response.getWriter();
         pw.print("<html><body>");
@@ -24,10 +25,10 @@ public class Register extends HttpServlet {
 
         user.setName(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
-        if(user_service.register(user)){
-            pw.print("<h1>注册成功！</h1>");
+        if(user_service.login(user)){
+            pw.print("<h1>登录成功！</h1>");
         }else{
-            pw.print("<h1>注册失败！</h1>");
+            pw.print("<h1>登录失败！</h1>");
         }
         pw.print("</body></html>");
         pw.flush();

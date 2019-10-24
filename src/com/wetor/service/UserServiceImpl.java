@@ -13,9 +13,9 @@ public class UserServiceImpl implements UserService{
             return false;
         try{
             TransactionManager.begin();
-            user_dao.login(user);
+            boolean retn = user_dao.login(user);
             TransactionManager.commit();
-            return true;
+            return retn;
         }catch (Exception e){
             e.printStackTrace();
             TransactionManager.rollback();
@@ -29,9 +29,9 @@ public class UserServiceImpl implements UserService{
             return false;
         try{
             TransactionManager.begin();
-            user_dao.register(user);
+            boolean retn = user_dao.register(user);
             TransactionManager.commit();
-            return true;
+            return retn;
         }catch (Exception e){
             e.printStackTrace();
             TransactionManager.rollback();

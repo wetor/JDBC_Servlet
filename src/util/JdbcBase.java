@@ -51,15 +51,24 @@ public class JdbcBase {
      *
      * @param clob clob
      */
-    protected String clobToString(Clob clob) throws SQLException, IOException {
+    protected String clobToString(Clob clob, Integer char_num) throws SQLException, IOException {
         String reString = "";
         Reader is = clob.getCharacterStream();
         BufferedReader br = new BufferedReader(is);
         String s = br.readLine();
         StringBuilder sb = new StringBuilder();
         while (s != null) {
+            if(char_num!=null){
+                if(sb.length()>=char_num){
+                    /*读取部分行后长度超出限制跳出读取*/
+                    break;
+                }
+
+            }
             sb.append(s);
+            sb.append("<br>");
             s = br.readLine();
+
         }
         reString = sb.toString();
         br.close();
