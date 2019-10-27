@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface  PostService {
     public boolean posting(Post post);
+    public boolean editing(Post post);
     public boolean delete(int id);
     public Post get(Integer id);
     public List<Post> getAll();

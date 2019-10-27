@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.*;
+import java.util.Arrays;
 
 public class JdbcBase {
     public void query(String sql, Object... objs) throws Exception{
@@ -55,18 +56,18 @@ public class JdbcBase {
         String reString = "";
         Reader is = clob.getCharacterStream();
         BufferedReader br = new BufferedReader(is);
+        if(char_num!=null){
+            char[] text=new char[char_num];
+            br.read(text,0,char_num);
+            br.close();
+            is.close();
+            return String.valueOf(text);
+        }
         String s = br.readLine();
         StringBuilder sb = new StringBuilder();
         while (s != null) {
-            if(char_num!=null){
-                if(sb.length()>=char_num){
-                    /*读取部分行后长度超出限制跳出读取*/
-                    break;
-                }
-
-            }
             sb.append(s);
-            sb.append("<br>");
+            sb.append("\n");
             s = br.readLine();
 
         }

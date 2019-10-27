@@ -76,7 +76,7 @@ public class test {
     @Test
     public void Dao_posting()throws Exception {
         PostDao post = new PostDaoImpl();
-        post.posting(new Post("Title test", "wetor", new Date(), "test contentest contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1ts1\r\ntest contents2\r\ntest contentstest contents1test contents1test contents1test contents1test contents13\r\ntest conttest contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1ents4\r\ntest contents5\r\ntest contents6\r\ntest contents7\r\ntest contents8\r\ntest contents\r\ntest contents\r\ntest contents\ntest contents\ntest contents\ntest contents\n"));
+        post.posting(new Post("Title test", "wetor", new Date(), "60test contentest contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1ts1\r\ntest contents2\r\ntest contentstest contents1test contents1test contents1test contents1test contents13\r\ntest conttest contents1test contents1test contents1test contents1test contents1test contents1test contents1test contents1ents4\r\ntest contents5\r\ntest contents6\r\ntest contents7\r\ntest contents8\r\ntest contents\r\ntest contents\r\ntest contents\ntest contents\ntest contents\ntest contents\n"));
     }
 
     @Test

@@ -32,8 +32,40 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    public boolean editing(Post post) {
+        try{
+            TransactionManager.begin();
+            Post retn = post_dao.get(post.getId());
+            if(post.getTitle()==null || post.getTitle().equals(""))
+                post.setTitle(retn.getTitle());
+            if(post.getAuthor()==null || post.getAuthor().equals(""))
+                post.setAuthor(retn.getAuthor());
+            if(post.getDate()==null || post.getDate().getTime()==0)
+                post.setDate(retn.getDate());
+            if(post.getContent()==null || post.getContent().equals(""))
+                post.setContent(retn.getContent());
+            post_dao.editing(post);
+            TransactionManager.commit();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            TransactionManager.rollback();
+            return false;
+        }
+    }
+
+    @Override
     public boolean delete(int id) {
-        return false;
+        try{
+            TransactionManager.begin();
+            post_dao.delete(id);
+            TransactionManager.commit();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            TransactionManager.rollback();
+            return false;
+        }
     }
 
     @Override

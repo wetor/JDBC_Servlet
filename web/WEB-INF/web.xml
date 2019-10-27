@@ -35,14 +35,22 @@
 
     <!--主页-->
     <servlet>
-        <servlet-name>mainPage</servlet-name>
-        <servlet-class>com.wetor.servlet.MainServlet</servlet-class>
+        <servlet-name>blogPage</servlet-name>
+        <servlet-class>com.wetor.servlet.BlogServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>mainPage</servlet-name>
-        <url-pattern>/main</url-pattern>
+        <servlet-name>blogPage</servlet-name>
+        <url-pattern>/blog</url-pattern>
     </servlet-mapping>
-
+    <!--主页-->
+    <servlet>
+        <servlet-name>adminPage</servlet-name>
+        <servlet-class>com.wetor.servlet.AdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminPage</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
     <!--帖子-->
     <servlet>
         <servlet-name>postPage</servlet-name>
@@ -51,5 +59,25 @@
     <servlet-mapping>
         <servlet-name>postPage</servlet-name>
         <url-pattern>/page</url-pattern>
+    </servlet-mapping>
+
+    <!--修改帖子-->
+    <servlet>
+        <servlet-name>editPage</servlet-name>
+        <servlet-class>com.wetor.servlet.EditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editPage</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+    <!--提示信息-->
+    <servlet>
+        <servlet-name>messagePage</servlet-name>
+        <servlet-class>com.wetor.servlet.MessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>messagePage</servlet-name>
+        <url-pattern>/message</url-pattern>
     </servlet-mapping>
 </web-app>

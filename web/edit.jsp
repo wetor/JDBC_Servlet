@@ -1,0 +1,126 @@
+<%@ page import="com.wetor.entity.Post" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%!
+    //替换content中无法被textarea使用的字符
+    public static String HTMLChange(String source){
+        String changeStr="";
+        changeStr=source.replaceAll("&","&amp;");
+        //changeStr=changeStr.replaceAll(" ","&ensp;");
+        changeStr=changeStr.replaceAll("<","&lt;");
+        changeStr=changeStr.replaceAll(">","&gt;");
+        changeStr=changeStr.replaceAll("\r\n","<br>");
+            changeStr=changeStr.replaceAll("\"", "&quot;");
+        return changeStr;
+    }
+%>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Div</title>
+    <script src="js/showdown.min.js"></script>
+    <link href="css/Mweb.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function pageScroll(){
+            window.scrollBy(0,-30);
+            scrolldelay = setTimeout('pageScroll()',1);
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            if(sTop==0) clearTimeout(scrolldelay);
+        }
+        function mdSwitch() {
+            var mdValue = document.getElementById("md-area").value;
+            var converter = new showdown.Converter();
+            var html = converter.makeHtml(mdValue);
+            document.getElementById("show-area").innerHTML = html;
+        }
+        function syncScroll() {
+            const l=document.getElementById('md-area');
+            const r=document.getElementById('show-area');
+            var content=document.getElementById("hidden_content").value;
+            l.value=content;
+            let currentTab = 0;
+            l.addEventListener('scroll', ()=>{
+                if (currentTab !== 1) return;
+            r.scrollTop = l.scrollTop * r.scrollHeight / l.scrollHeight;
+        });
+            r.addEventListener('scroll', ()=>{
+                if (currentTab !== 2) return;
+            l.scrollTop = r.scrollTop * l.scrollHeight / r.scrollHeight;
+        });
+            l.addEventListener('mouseover', ()=>{
+                // 1 表示表示当前鼠标位于 .left元素范围内
+                currentTab = 1;
+            });
+            r.addEventListener('mouseover', ()=>{
+                // 2 表示表示当前鼠标位于 .right元素范围内
+                currentTab = 2;
+            });
+        }
+    </script>
+</head>
+<body>
+<%Post post=(Post)request.getAttribute("post");%>
+<input type="hidden" id="hidden_content" value="<%=HTMLChange(post.getContent())%>"/>
+<div id="pageDiv">
+    <div id="leftDiv">
+        <div id="leftBoxDiv">
+            <div id="headImageDiv">
+                <img id="headImage" src="images/head.png" >
+            </div>
+        </div>
+
+    </div>
+    <div id="returnTop"  onclick="pageScroll()">
+        <img style="border: 3px solid #ddd" src="images/returnTop.png" >
+    </div>
+    <div id="mainDiv">
+        <div class="postBoxDiv">
+            <div class="postBackgroundDiv">
+                <div id="editTitleDiv">
+                    <span style="font-size: 17px;float: left;padding-left:0px;">标题</span>
+                    <input id="editTitle" name="title" form="editing" value="${post.title}"/>
+                    <span style="font-size: 17px;float: left;padding-left:15px;">作者</span>
+                    <input id="editAuthor" name="author"  form="editing"  value="${post.author}"/>
+
+                    <input id="editDate" type="date" value="2019-01-01"/>
+                    <span style="font-size: 17px;float: right;padding-right:15px;">时间</span>
+
+
+                </div>
+                <div id="editContentDiv">
+                    <div id="area">
+                        <table>
+                            <tr>
+                                <td>
+                                    <textarea id="md-area" name="content"  form="editing" onkeyup="mdSwitch()"></textarea>
+                                </td>
+                                <td>
+                                    <div id="show-area" ></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+                <form action="edit" id="editing" method="post">
+                    <input type="hidden" name="operation" value="edit">
+                    <input type="hidden" name="id" value="${post.id}">
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+        <div id="blogBottomDiv"></div>
+
+    </div>
+</div>
+
+</body>
+<script>
+    syncScroll();
+    mdSwitch();
+</script>
+</html>

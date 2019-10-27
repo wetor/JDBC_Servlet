@@ -62,7 +62,7 @@ public class PostDaoImpl extends util.JdbcBase implements PostDao{
         ResultSet rs = null;
 
         conn = JdbcUtil.getConnection();
-        ps = conn.prepareStatement("select * from t_post order by p_id");
+        ps = conn.prepareStatement("select * from t_post order by p_date desc");
         rs = ps.executeQuery();
         while (rs.next()) {
             Post p = new Post();
