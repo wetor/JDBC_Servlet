@@ -1,5 +1,7 @@
 # JDBC_Servlet
-a jdbc javaweb project
+a jdbc javaweb project  
+第一个JavaWeb程序  
+纯初学者，瞎写的一个博客，结构、代码混乱  
 ## 目前结构
 servlet + JDBC
 ## 当前进度
