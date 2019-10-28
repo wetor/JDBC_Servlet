@@ -17,3 +17,15 @@ servlet + JDBC
 - 其他(js)，返回顶部、滑动条同步、计时跳转
 ### 下一步
 - 有待学习，会话，其他框架等...
+### 截图
+首页
+![主页](./web/showpic/blog.png)
+
+查看帖子
+![主页](./web/showpic/page.png)
+
+管理员页面
+![主页](./web/showpic/admin.png)
+
+发帖、编辑页面
+![主页](./web/showpic/edit.png)
