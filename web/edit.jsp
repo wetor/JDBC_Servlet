@@ -20,7 +20,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Div</title>
+    <title>MyBlog-Admin-EditPage</title>
     <script src="js/showdown.min.js"></script>
     <link href="css/Mweb.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
@@ -88,8 +88,6 @@
 
                     <input id="editDate" type="date" value="2019-01-01"/>
                     <span style="font-size: 17px;float: right;padding-right:15px;">时间</span>
-
-
                 </div>
                 <div id="editContentDiv">
                     <div id="area">
@@ -109,6 +107,7 @@
                 <form action="edit" id="editing" method="post">
                     <input type="hidden" name="operation" value="edit">
                     <input type="hidden" name="id" value="${post.id}">
+                    <input type="hidden" name="token" value="${token}">
                     <input type="submit">
                 </form>
             </div>

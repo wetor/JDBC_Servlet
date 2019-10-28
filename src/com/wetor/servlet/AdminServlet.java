@@ -1,8 +1,11 @@
 package com.wetor.servlet;
 
 import com.wetor.entity.Post;
+import com.wetor.entity.User;
 import com.wetor.service.PostService;
 import com.wetor.service.PostServiceImpl;
+import com.wetor.service.UserService;
+import com.wetor.service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +23,22 @@ public class AdminServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
-        PostService post_service=new PostServiceImpl();
 
+
+
+        String token=request.getParameter("token");
+
+
+        UserService user_service=new UserServiceImpl();
+        User user=user_service.getTokenUser(token);
+        if(!(user!=null &&user_service.login(user))){
+            //用户名或密码错误，无法进入admin
+            response.sendRedirect("login.html");
+            return;
+        }
+
+
+        PostService post_service=new PostServiceImpl();
         String operation = request.getParameter("operation");
         String str_id=request.getParameter("id");
         Integer id=null;
@@ -29,45 +46,22 @@ public class AdminServlet extends HttpServlet {
         if(str_id!=null)
             id=Integer.parseInt(str_id);
 
-        if(operation!=null ){
-
-            if(operation.equals("delete")){
-                //id=?
-                if(id!=null && post_service.delete(id)){
-                    result="删除成功！";
-                }else{
-                    result="删除失败！";
-                }
-                request.getRequestDispatcher("message?url=admin&result="+result).forward(request, response);
+        if(operation!=null && operation.equals("delete")){
+            //id=?
+            if(id!=null && post_service.delete(id)){
+                result="删除成功！";
+            }else{
+                result="删除失败！";
             }
-            else if(operation.equals("posting")){
-                Post post=new Post();
-                post.setId(id);
-                post.setTitle(request.getParameter("title"));
-                post.setAuthor(request.getParameter("author"));
-                String dateStr = request.getParameter("date");
-                if(dateStr!=null)
-                    post.setDate(new Date(Long.parseLong(dateStr)));
-                post.setContent(request.getParameter("content"));
-
-
-                    //       posting
-                    //title=?
-                    //author=?
-                    //date=?
-                    //content=?
-                    post.setId(null);
-                    if (post_service.posting(post)) {
-                        request.setAttribute("result", "发帖成功！");
-                    } else {
-                        request.setAttribute("result", "发帖失败！");
-                    }
-
-            }
+            request.getRequestDispatcher("message?url=admin&token="+token+"&result="+result).forward(request, response);
         }
+
+
+
 
         List<Post> list=post_service.getAll();
         request.setAttribute("list",list);
+        request.setAttribute("token",token);
         request.getRequestDispatcher("/admin.jsp").forward(request,response);
         //response.sendRedirect("admin.jsp");
     }

@@ -6,7 +6,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Div</title>
+    <title>MyBlog-Admin-PostingPage</title>
     <script src="js/showdown.min.js"></script>
     <link href="css/Mweb.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
@@ -51,7 +51,7 @@
     <div id="leftDiv">
         <div id="leftBoxDiv">
             <div id="headImageDiv">
-
+                <img id="headImage" src="images/head.png" >
             </div>
         </div>
     </div>
@@ -85,6 +85,7 @@
                 <br/>
                 <form action="posting" id="posting" method="post">
                     <input type="hidden" name="operation" value="posting">
+                    <input type="hidden" name="token" value="${token}">
                     <br/>
                     <input type="submit">
                 </form>

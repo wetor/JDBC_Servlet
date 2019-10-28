@@ -17,6 +17,7 @@ public class MessageServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        request.setAttribute("token",request.getParameter("token"));
         request.setAttribute("url",request.getParameter("url"));
         request.setAttribute("message",request.getParameter("result"));
         request.getRequestDispatcher("/message.jsp").forward(request,response);

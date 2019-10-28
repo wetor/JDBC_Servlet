@@ -20,6 +20,9 @@ public class EditServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
+
+        String token=request.getParameter("token");
+
         String operation = request.getParameter("operation");
         PostService post_service = new PostServiceImpl();
         Integer id=Integer.parseInt(request.getParameter("id"));
@@ -40,10 +43,11 @@ public class EditServlet extends HttpServlet {
             }else{
                 result="修改失败！";
             }
-            request.getRequestDispatcher("message?url=admin&result="+result).forward(request, response);
+            request.getRequestDispatcher("message?url=admin&result="+result+"&token="+token).forward(request, response);
 
         }else{
             post= post_service.get(id);
+            request.setAttribute("token", token);
             request.setAttribute("post", post);
             request.getRequestDispatcher("/edit.jsp").forward(request, response);
         }

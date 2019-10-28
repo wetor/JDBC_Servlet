@@ -18,20 +18,18 @@ public class LoginServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
-        PrintWriter pw= response.getWriter();
-        pw.print("<html><body>");
         User user=new User();
         UserService user_service=new UserServiceImpl();
 
         user.setName(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
         if(user_service.login(user)){
-            pw.print("<h1>登录成功！</h1>");
+
+            request.getRequestDispatcher("message?url=admin&token="+user_service.getUserToken(user)+"&result=登录成功！").forward(request, response);
+
         }else{
-            pw.print("<h1>登录失败！</h1>");
+            request.getRequestDispatcher("message?url=login.html&result=登录失败！账号或密码错误！").forward(request, response);
         }
-        pw.print("</body></html>");
-        pw.flush();
 
     }
 

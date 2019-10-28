@@ -6,7 +6,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Div</title>
+    <title>MyBlog-ShowPage</title>
     <script src="js/showdown.min.js"></script>
     <link href="css/Mweb.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
