@@ -24,14 +24,8 @@ public class AdminServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
 
-
-
-        String token=request.getParameter("token");
-
-
-        UserService user_service=new UserServiceImpl();
-        User user=user_service.getTokenUser(token);
-        if(!(user!=null &&user_service.login(user))){
+        String flag=(String)request.getSession().getAttribute("login");
+        if(!(flag!=null && flag.equals("true"))){
             //用户名或密码错误，无法进入admin
             response.sendRedirect("login.html");
             return;
@@ -53,7 +47,7 @@ public class AdminServlet extends HttpServlet {
             }else{
                 result="删除失败！";
             }
-            request.getRequestDispatcher("message?url=admin&token="+token+"&result="+result).forward(request, response);
+            request.getRequestDispatcher("message?url=admin&result="+result).forward(request, response);
         }
 
 
@@ -61,7 +55,6 @@ public class AdminServlet extends HttpServlet {
 
         List<Post> list=post_service.getAll();
         request.setAttribute("list",list);
-        request.setAttribute("token",token);
         request.getRequestDispatcher("/admin.jsp").forward(request,response);
         //response.sendRedirect("admin.jsp");
     }

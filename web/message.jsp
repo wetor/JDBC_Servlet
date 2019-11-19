@@ -15,7 +15,7 @@
 <h2>${message}</h2>
 <br/>
 <p style="text-indent: 2em; margin-top: 60px;">
-    系统将在 <span id="time">3</span> 秒钟后自动跳转至首页，如果未能跳转，<a href="${url}?token=${token}" title="点击访问">请点击</a>。</p>
+    系统将在 <span id="time">3</span> 秒钟后自动跳转至首页，如果未能跳转，<a href="${url}" title="点击访问">请点击</a>。</p>
 <script type="text/javascript">
     delayURL();
     function delayURL() {
@@ -26,7 +26,7 @@
             document.getElementById("time").innerHTML = delay;
         } else {
             clearTimeout(t);
-            window.location.href = "${url}?token=${token}";
+            window.location.href = "${url}";
         }
     }
 </script>

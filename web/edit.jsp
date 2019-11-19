@@ -107,7 +107,6 @@
                 <form action="edit" id="editing" method="post">
                     <input type="hidden" name="operation" value="edit">
                     <input type="hidden" name="id" value="${post.id}">
-                    <input type="hidden" name="token" value="${token}">
                     <input type="submit">
                 </form>
             </div>

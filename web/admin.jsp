@@ -41,9 +41,9 @@
             <c:forEach items="${requestScope.list}" var="post">
                 <div class="postBoxDiv">
                     <div class="adminPostButtonDiv">
-                        <a class="adminPostA" href="posting?token=${token}">发新贴</a>
-                        <a class="adminPostA" href="edit?id=${post.id}&token=${token}">修改</a>
-                        <a class="adminPostA" onclick="return confirm('确定要删除？');" href="admin?operation=delete&id=${post.id}&token=${token}">删除</a>
+                        <a class="adminPostA" href="posting">发新贴</a>
+                        <a class="adminPostA" href="edit?id=${post.id}">修改</a>
+                        <a class="adminPostA" onclick="return confirm('确定要删除？');" href="admin?operation=delete&id=${post.id}">删除</a>
                     </div>
                     <div class="postBackgroundDiv">
                         <div class="postInfoDiv">

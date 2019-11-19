@@ -20,8 +20,12 @@ public class PostingServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
 
-        String token=request.getParameter("token");
-
+        String flag=(String)request.getSession().getAttribute("login");
+        if(!(flag!=null && flag.equals("true"))){
+            //用户名或密码错误，无法进入admin
+            response.sendRedirect("login.html");
+            return;
+        }
         String operation = request.getParameter("operation");
         PostService post_service = new PostServiceImpl();
         String result;
@@ -41,10 +45,9 @@ public class PostingServlet extends HttpServlet {
             } else {
                 result="发帖失败！";
             }
-            request.getRequestDispatcher("message?url=admin&result="+result+"&token="+token).forward(request, response);
+            request.getRequestDispatcher("message?url=admin&result="+result).forward(request, response);
 
         }else{
-            request.setAttribute("token", token);
             request.getRequestDispatcher("/posting.jsp").forward(request, response);
         }
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/JDBC_Servlet"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="Tomcat 8.5.45" scope="PROVIDED"/>
+	<lib name="ojdbc6.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/web/WEB-INF/lib/ojdbc6.jar!/"/>
+	</lib>
+	<levels>
+		<level name="Tomcat 8.5.45" value="application_server_libraries"/>
+	</levels>
+</component>

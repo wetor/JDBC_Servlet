@@ -85,7 +85,6 @@
                 <br/>
                 <form action="posting" id="posting" method="post">
                     <input type="hidden" name="operation" value="posting">
-                    <input type="hidden" name="token" value="${token}">
                     <br/>
                     <input type="submit">
                 </form>
